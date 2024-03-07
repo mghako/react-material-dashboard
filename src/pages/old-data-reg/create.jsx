@@ -16,8 +16,15 @@ const OldItemRegistration = () => {
         QRCode.toCanvas('text', { errorCorrectionLevel: 'H' }, function (err, canvas) {
             if (err) throw err
           
-            var container = document.getElementById('qr-section')
-            container.appendChild(canvas)
+            var container = document.getElementById('qr-section');
+            var newCanvas = document.createElement('canvas');
+
+            var oldCanvas = container.querySelector('canvas');
+            if (oldCanvas) {
+                container.replaceChild(newCanvas, oldCanvas);
+            } else {
+                container.appendChild(newCanvas);
+            }
           })
 
           setShowQR(true)
